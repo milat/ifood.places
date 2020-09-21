@@ -1,7 +1,7 @@
 package br.com.ifood.places.controller;
 
-import br.com.ifood.places.model.Item;
-import br.com.ifood.places.repository.ItemRepository;
+import br.com.ifood.places.domain.Item;
+import br.com.ifood.places.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,27 +10,27 @@ import java.util.List;
 
 @RestController
 @RequestMapping("item")
-public class ItemResource {
+public class ItemController {
 
     @Autowired
-    private ItemRepository itemRepository;
+    private ItemService itemService;
 
     @GetMapping("/restaurante/{restaurante}")
     public List<Item> listar(@PathVariable Long restaurante) {
-        return itemRepository.findAllByRestaurante(restaurante);
+        return itemService.findAllByRestaurante(restaurante);
     }
 
     @GetMapping("{id}")
     public Item buscar(@PathVariable Long id) {
-        return itemRepository.findById(id).get();
+        return itemService.findById(id);
     }
 
     @DeleteMapping("{id}")
-    public void remover(@PathVariable Long id) { itemRepository.deleteById(id); }
+    public void remover(@PathVariable Long id) { itemService.deleteById(id); }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Item cadastrar(@RequestBody Item item) {
-        return itemRepository.save(item);
+        return itemService.save(item);
     }
 }

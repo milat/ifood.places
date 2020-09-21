@@ -1,4 +1,4 @@
-package br.com.ifood.places.model;
+package br.com.ifood.places.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

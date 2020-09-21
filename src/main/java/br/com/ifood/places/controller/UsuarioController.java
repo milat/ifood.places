@@ -1,7 +1,7 @@
 package br.com.ifood.places.controller;
 
-import br.com.ifood.places.model.Usuario;
-import br.com.ifood.places.repository.UsuarioRepository;
+import br.com.ifood.places.domain.Usuario;
+import br.com.ifood.places.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,18 +12,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("usuario")
-public class UsuarioResource {
+public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @GetMapping
     public List<Usuario> listar() {
-        return usuarioRepository.findAll();
+        return usuarioService.findAll();
     }
 
     @GetMapping("{id}")
     public Usuario buscar(@PathVariable Long id) {
-        return usuarioRepository.findById(id).get();
+        return usuarioService.findById(id);
     }
 }

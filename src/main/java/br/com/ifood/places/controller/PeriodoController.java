@@ -1,7 +1,7 @@
 package br.com.ifood.places.controller;
 
-import br.com.ifood.places.model.Periodo;
-import br.com.ifood.places.repository.PeriodoRepository;
+import br.com.ifood.places.domain.Periodo;
+import br.com.ifood.places.service.PeriodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,24 +13,24 @@ import java.util.List;
 public class PeriodoController {
 
     @Autowired
-    private PeriodoRepository periodoRepository;
+    private PeriodoService periodoService;
 
     @GetMapping("/restaurante/{restaurante}")
     public List<Periodo> listar(@PathVariable Long restaurante) {
-        return periodoRepository.findAllByRestaurante(restaurante);
+        return periodoService.findAllByRestaurante(restaurante);
     }
 
     @GetMapping("{id}")
     public Periodo buscar(@PathVariable Long id) {
-        return periodoRepository.findById(id).get();
+        return periodoService.findById(id);
     }
 
     @DeleteMapping("{id}")
-    public void remover(@PathVariable Long id) { periodoRepository.deleteById(id); }
+    public void remover(@PathVariable Long id) { periodoService.deleteById(id); }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Periodo cadastrar(@RequestBody Periodo periodo) {
-        return periodoRepository.save(periodo);
+        return periodoService.save(periodo);
     }
 }

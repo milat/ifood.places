@@ -1,20 +1,20 @@
 package br.com.ifood.places.controller;
 
-import br.com.ifood.places.model.Usuario;
-import br.com.ifood.places.repository.UsuarioRepository;
+import br.com.ifood.places.domain.Usuario;
+import br.com.ifood.places.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("login")
-public class LoginResource {
+public class LoginController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @PostMapping
     public Usuario logar(@RequestParam("email") String email, @RequestParam("pass") String pass){
-        return this.usuarioRepository.findUsuarioByEmail(email);
+        return this.usuarioService.findUsuarioByEmail(email);
     }
 
 }

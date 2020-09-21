@@ -1,6 +1,6 @@
 package br.com.ifood.places.repository;
 
-import br.com.ifood.places.model.Periodo;
+import br.com.ifood.places.domain.Periodo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

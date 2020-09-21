@@ -1,4 +1,4 @@
-package br.com.ifood.places.model;
+package br.com.ifood.places.domain;
 
 import javax.persistence.*;
 import java.util.Date;
